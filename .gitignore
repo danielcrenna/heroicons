@@ -2,3 +2,9 @@
 /node_modules
 /20
 /24
+
+/blazor/.vs/
+/blazor/heroicons/bin
+/blazor/heroicons/obj
+/blazor/heroicons.codegen/bin/
+/blazor/heroicons.codegen/obj/

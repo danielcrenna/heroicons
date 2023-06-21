@@ -1,0 +1,30 @@
+﻿@inherits Icon
+<DynamicComponent Type="@_iconType" Parameters="@AdditionalAttributes" />
+
+@code
+{
+    [Parameter]
+    public IconType Type { get; set; } = IconType.QuestionMarkCircle;
+
+    [Parameter]
+    public IconStyle Style { get; set; } = IconStyle.Solid;
+
+    [Parameter]
+    public IconSize Size { get; set; } = IconSize.Regular;
+
+    private Type? _iconType;
+
+    protected override Task OnParametersSetAsync()
+    {
+        _iconType = GetIconType();
+        return Task.CompletedTask;
+    }
+
+    public Type? GetIconType()
+    {
+        var size = Size == IconSize.Regular ? "24" : "20";
+        var typeName = $"{typeof(Icon).Namespace}._{size}.{Style}.{Type}Icon";
+        var type = System.Type.GetType(typeName, false, true)!;
+        return type ?? typeof(heroicons._24.solid.QuestionMarkCircleIcon);
+    }
+}
