@@ -2,6 +2,7 @@
 using System.Text;
 
 var iconTypes = new HashSet<string>();
+await GenerateIconComponentsAsync(iconTypes, @"..\\..\\..\\..\\..\\optimized\\16\\solid", @"..\\..\\..\\..\\..\\blazor\\heroicons\\16\\solid\\");
 await GenerateIconComponentsAsync(iconTypes, @"..\\..\\..\\..\\..\\optimized\\20\\solid", @"..\\..\\..\\..\\..\\blazor\\heroicons\\20\\solid\\");
 await GenerateIconComponentsAsync(iconTypes, @"..\\..\\..\\..\\..\\optimized\\24\\solid", @"..\\..\\..\\..\\..\\blazor\\heroicons\\24\\solid\\");
 await GenerateIconComponentsAsync(iconTypes, @"..\\..\\..\\..\\..\\optimized\\24\\outline", @"..\\..\\..\\..\\..\\blazor\\heroicons\\24\\outline\\");
@@ -17,7 +18,11 @@ async Task GenerateIconComponentsAsync(ISet<string> typeSet, string sourceDir, s
 
         Console.WriteLine(iconType);
 
+        var size = sourceDir.Contains("16") ? "Micro" : sourceDir.Contains("20") ? "Mini" : "Regular";
+        var style = sourceDir.Contains("solid") ? "Solid" : "Outline";
+
         var sb = new StringBuilder();
+        sb.AppendLine($"@namespace heroicons.{size}.{style}");
         sb.AppendLine("@inherits Icon");
 
         var svg = await File.ReadAllTextAsync(filePath);
@@ -51,8 +56,8 @@ async Task GenerateIconTypes(HashSet<string> hashSet)
 
 static string ConvertToTitleCase(string input)
 {
-    TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
-    string replaced = input.Replace('-', ' ');
-    string titleCased = textInfo.ToTitleCase(replaced);
+    var textInfo = new CultureInfo("en-US", false).TextInfo;
+    var replaced = input.Replace('-', ' ');
+    var titleCased = textInfo.ToTitleCase(replaced);
     return titleCased.Replace(" ", "");
 }

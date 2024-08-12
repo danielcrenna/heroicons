@@ -3,5 +3,6 @@ namespace heroicons;
 public enum IconSize
 {
     Regular,
-    Small
+    Mini,
+    Micro
 }
