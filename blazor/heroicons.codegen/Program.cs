@@ -8,6 +8,7 @@ await GenerateIconComponentsAsync(iconTypes, @"..\\..\\..\\..\\..\\optimized\\24
 await GenerateIconComponentsAsync(iconTypes, @"..\\..\\..\\..\\..\\optimized\\24\\outline", @"..\\..\\..\\..\\..\\blazor\\heroicons\\24\\outline\\");
 await GenerateIconTypes(iconTypes);
 return;
+
 async Task GenerateIconComponentsAsync(ISet<string> typeSet, string sourceDir, string outputDir)
 {
     foreach (var filePath in Directory.EnumerateFiles(sourceDir))
