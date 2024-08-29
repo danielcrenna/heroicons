@@ -3,7 +3,7 @@
 
 @code
 {
-    [Parameter] public IconType Type { get; set; } = IconType.QuestionMarkCircle;
+    [Parameter] public IconType Type { get; set; } = IconFactory.DefaultIconType;
     [Parameter] public IconStyle Style { get; set; } = IconStyle.Solid;
     [Parameter] public IconSize Size { get; set; } = IconSize.Regular;
 
@@ -11,14 +11,7 @@
 
     protected override Task OnParametersSetAsync()
     {
-        _iconType = GetIconType();
+        _iconType = IconFactory.GetIconType(Type, Style, Size);
         return Task.CompletedTask;
-    }
-
-    public Type? GetIconType()
-    {
-        var typeName = $"{typeof(Icon).Namespace}.{Size}.{Style}.{Type}Icon";
-        var type = System.Type.GetType(typeName, false, true)!;
-        return type ?? typeof(heroicons.Regular.Solid.QuestionMarkCircleIcon);
     }
 }
