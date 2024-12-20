@@ -1,9 +1,14 @@
 {
   "name": "@heroicons/react",
   "license": "MIT",
-  "version": "2.1.5",
-  "description": "",
-  "keywords": [],
+  "version": "2.2.0",
+  "description": "A set of free MIT-licensed high-quality SVG icons for UI development.",
+  "keywords": [
+    "icons",
+    "svg",
+    "react",
+    "tailwindcss"
+  ],
   "homepage": "https://github.com/tailwindlabs/heroicons#readme",
   "repository": {
     "type": "git",
@@ -144,6 +149,6 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react": ">= 16"
+    "react": ">= 16 || ^19.0.0-rc"
   }
 }
